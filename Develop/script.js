@@ -1,11 +1,3 @@
-// const randomFunc = {
-//   lower: randomLower,
-//   upper: randomUpper,
-//   number: randomNumber,
-//   special: randomSpecial
-// };
-
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -33,22 +25,17 @@ function generatePassword() {
   const special = confirm("Would you like special characters in your password?");
   console.log(special);
 
-
+//an array for all the parameters
   let functionArr= []
   if(lowercase) {functionArr.push(randomLower)}
-  console.log(functionArr);
   if(uppercase) {functionArr.push(randomUpper)}
-  console.log(functionArr);
   if(numbers) {functionArr.push(randomNumber)}
-  console.log(functionArr);
   if(special) {functionArr.push(randomSpecial)}
-  console.log(functionArr);
 
   let password = ""
-
+//for loop randomizing password with parameters selected above
   for(let i = 0; i < passwordlength; i++) {
     password += functionArr[Math.floor(Math.random() * functionArr.length)]()
-    console.log(password);
   }
   return password;
 }
@@ -58,28 +45,22 @@ function generatePassword() {
 function randomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
-console.log(randomLower());
 
 //all random uppercase letters
 function randomUpper() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
-console.log(randomUpper());
 
 //all random numbers
 function randomNumber() {
   return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 }
-console.log(randomNumber());
 
 //all random special characters
 function randomSpecial() {
   const symbols = "!@#$%^&*(){}[]=/,."
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
-console.log(randomSpecial());
-
-
 
 
 // Write password to the #password input
@@ -91,17 +72,5 @@ function writePassword() {
 
 }
 
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
-// for(let i = 0; i < passwordlength; i += typesCount) {
-  //   typesArr.forEach(type => {
-  //     const funcName = Object.keys(type)[0];
-  //     console.log("funcName:", funcName);
-
-  //     password += randomFunc[funcName]();
-  //   });
-  // }
