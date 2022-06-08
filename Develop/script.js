@@ -33,21 +33,24 @@ function generatePassword() {
   const special = confirm("Would you like special characters in your password?");
   console.log(special);
 
-  // number of parameters we have
-  const typesCount = lowercase + uppercase + numbers + special;
-  console.log("typesCount:" , typesCount);
 
-  // only use parameters if value is true, if not then not needed
-  const typesArr = [{lowercase}, {uppercase}, {numbers}, {special}].filter
-    (
-    item => Object.values(item)[0]
-    );
-  console.log("typesArr:", typesArr);
+  let functionArr= []
+  if(lowercase) {functionArr.push(randomLower)}
+  console.log(functionArr);
+  if(uppercase) {functionArr.push(randomUpper)}
+  console.log(functionArr);
+  if(numbers) {functionArr.push(randomNumber)}
+  console.log(functionArr);
+  if(special) {functionArr.push(randomSpecial)}
+  console.log(functionArr);
 
-  // if not parameters selected, no password
-  if(typesCount === 0) {
-    return "";
+  let password = ""
+
+  for(let i = 0; i < passwordlength; i++) {
+    password += functionArr[Math.floor(Math.random() * functionArr.length)]()
+    console.log(password);
   }
+  return password;
 }
 
 
@@ -91,3 +94,14 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
+// for(let i = 0; i < passwordlength; i += typesCount) {
+  //   typesArr.forEach(type => {
+  //     const funcName = Object.keys(type)[0];
+  //     console.log("funcName:", funcName);
+
+  //     password += randomFunc[funcName]();
+  //   });
+  // }
